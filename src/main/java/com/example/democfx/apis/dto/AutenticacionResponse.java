@@ -2,13 +2,23 @@ package com.example.democfx.apis.dto;
 
 public class AutenticacionResponse {
 
-    private String bearer_token;
+    private String email;
+    private String token;
 
-    public String getBearer_token() {
-        return bearer_token;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setBearer_token(String bearer_token) {
-        this.bearer_token = bearer_token;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

@@ -7,10 +7,10 @@ import org.apache.cxf.jaxrs.client.WebClient;
 
 import javax.ws.rs.core.Response;
 
-public class HogaresApiCalls {
+public class DistanciaApiCalls {
 
     public String obtenerToken(String mail) throws Exception {
-        WebClient client = WebClient.create("https://api.refugiosdds.com.ar/api/usuarios");
+        WebClient clientUsers = WebClient.create("https://ddstpa.com.ar/api/user");
 
         AutenticacionRequest autenticacionRequest = new AutenticacionRequest(mail);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -18,19 +18,20 @@ public class HogaresApiCalls {
         System.out.println("Autent request = " + requestBody);
 
 
-        Response response = client
+        Response response = clientUsers
                 .header("Content-Type", "application/json")
                 .post(requestBody);
 
         int status = response.getStatus();
+        System.out.println("Status: " + status);
         String responseBody = response.readEntity(String.class);
-        if (status == 200) {
+        if (status == 201) {
             System.out.println("Autent response = " + responseBody);
             AutenticacionResponse autenticacionResponse = objectMapper.readValue(responseBody, AutenticacionResponse.class);
-            return autenticacionResponse.getBearer_token();
+            return autenticacionResponse.getToken();
         } else {
             System.out.println("Error response = " + responseBody);
-            throw new Exception("Error en la llamada a /api/usuarios");
+            throw new Exception("Error en la llamada a /api/user");
         }
     }
 }

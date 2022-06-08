@@ -10,6 +10,6 @@ public class AutenticacionRequest {
 
     public String getEmail() {
         return email;
-    }
+    } // debe estar si o si
 
 }
